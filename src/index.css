@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+@theme {
+  --animate-slide-down:slideDown 0.3s ease-out;
+  @keyframes slideDown{
+    from{
+      opacity:0;
+      transform: translateY(-10px);
+    }
+    to{
+      opacity: 1;
+      transform:translateY(0);
+    }
+  }
+}
+
 /* :root {
   --text: #6b6375;
   --text-h: #08060d;
