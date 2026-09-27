@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Navbar } from "../components/Navbar";
-function Login(){
+function LoginModal({isOpen,onClose}){
    const[email,setEmail]=useState("");
    const[password,setPassword]=useState("");
   function handleSubmit(e){
@@ -9,16 +8,18 @@ function Login(){
    console.log("hello");
    
   }
-  
+ if(!isOpen) return null;
     return(
         <>
         
-        <div className=" flex min-h-screen bg-indigo-900 items-center justify-center">
-         <div>  
-         </div>
-           <div  className="backdrop-blur-md bg-white/70 border border-white/30 shadow-xl rounded-xl
-           px-8 py-10 w-full max-w-sm flex flex-col items-center">
-          <h1 className="text-3xl font-bold mb-6" drop-shadow>Login</h1>
+        <div className=" fixed inset-0 z-50 backdrop-blur-md flex items-center animate-slide-down justify-center">
+        <div className="absolute inset-0 " onClick={onClose}/>
+           <div  className=" relative backdrop-blur-md bg-white/70 border border-white/30 shadow-xl rounded-xl
+           px-8 py-10 w-full max-w-sm flex flex-col items-center animate-[fadeIn_0.2s_ease-out]">
+             <button onClick={onClose} className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-xl leading-none">
+               ✕
+             </button>
+          <h1 className="text-3xl font-bold mb-6 drop-shadow ">Login</h1>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
 
@@ -34,7 +35,7 @@ function Login(){
                 placeholder="password" required className=" border rounded px-3 py-2 outline-none focus:ring"/>
              </div>
 
-             <button onSubmit={handleSubmit} className="mt-2 bg-white/49 hover:bg-white active:scale-[0.98]
+             <button onSubmit={handleSubmit} className="mt-2 bg-white/40 hover:bg-white active:scale-[0.98]
              text-gray-800 font-semibold rounded-lg py-2 transition-colors duration-300 hover:scale-[1.02]">Login</button>
             </form>
 
@@ -46,4 +47,4 @@ function Login(){
     )
    
 }
-export default Login;
+export default LoginModal;

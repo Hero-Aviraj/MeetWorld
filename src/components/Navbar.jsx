@@ -1,15 +1,17 @@
 import profileIcon from "../assets/nav_pngs/profile_icon.png";
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import LoginModal from "./LoginModal";
 export function Navbar(){
 const[showfeature,setShowfeature]=useState(false)
 const[showmore,setShowmore]=useState(false)
 const[mobileOpen,setMobileOpen]=useState(false)
+const[showlogin,setShowlogin]=useState(false);
   return(
     <>
     
-        <nav className="w-full px-4 md:px-8 py-2 flex items-center justify-between bg-emerald-200
-         relative z-50 ">
+        <nav className="w-full fixed top-0 left-0 px-4 md:px-8 py-3 flex items-center justify-around bg-white
+          z-50 ">
            <Link to="/" className="flex items-center gap-2 text-xl font-extrabold text-gray-900">
            <span>🌍</span> MeetWorld</Link>
 
@@ -36,7 +38,7 @@ const[mobileOpen,setMobileOpen]=useState(false)
         </div> 
           </div>
 
-       <div flex> 
+       <div> 
         <div className="relative">
           <button onClick={()=>{setShowmore(!showmore);
             setShowfeature(false);
@@ -60,13 +62,16 @@ const[mobileOpen,setMobileOpen]=useState(false)
           
           </div>
            <div className="hidden md:flex items-center gap-6">
-           <div> <Link to="/Login" className="hover:bg-slate-400 rounded transition-colors">Sign In</Link></div>
+           <div> 
+            <button onClick={()=>setShowlogin(true)}>Login</button>
+           </div>
             <Link to="Notification"
             className="hover:bg-slate-400 font-medium px-2 py-1 rounded transition-colors"
             >Notification</Link>
-            <Link to="/Login"><img src={profileIcon} alt="Profile"
-             className="pt-2 h-8 rounded-lg hover:scale-105 transition-transform duration-200" /></Link>
+            <button onClick={()=>setShowlogin(true)}> <img src={profileIcon} alt="Profile" className="pt-2 h-8 rounded-lg hover:scale-105 
+            transition-transform duration-200" /></button>
            </div>
+           <LoginModal isOpen={showlogin} onClose={()=>setShowlogin(false)}/>
 {/*hambarger*/}
 
            { <button
@@ -100,7 +105,7 @@ const[mobileOpen,setMobileOpen]=useState(false)
             </button>
             <div className={`flex flex-col pl-4 overflow-hidden transition-all duration-200 
               ${showfeature ? "max-h-40 mt-2" : "max-h-0"}`}>
-              <Link to="/Voiceroom" className="py-1" onClick={() => setMobileOpen(false)}>VoiceRoom</Link>
+              <Link to="../pages/Voiceroom" className="py-1" onClick={() => setMobileOpen(false)}>VoiceRoom</Link>
               <Link to="/Chat" className="py-1" onClick={() => setMobileOpen(false)}>Chat</Link>
               <Link to="/Videocall" className="py-1" onClick={() => setMobileOpen(false)}>Videocall</Link>
             </div>
