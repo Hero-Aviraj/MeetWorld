@@ -1,4 +1,5 @@
 import profileIcon from "../assets/nav_pngs/profile_icon.png";
+import logo from "../assets/nav_pngs/logo.png"
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import LoginModal from "./LoginModal";
@@ -13,7 +14,7 @@ const[showlogin,setShowlogin]=useState(false);
         <nav className="w-full fixed top-0 left-0 px-4 md:px-8 py-3 flex items-center justify-around bg-white
           z-50 ">
            <Link to="/" className="flex items-center gap-2 text-xl font-extrabold text-gray-900">
-           <span>🌍</span> MeetWorld</Link>
+           <span><img src={logo} alt="logo"className="w-9 h-9 object-contain rounded-lg object-cover" /></span> MeetWorld</Link>
 
            <div className="hidden md:flex items-center gap-12 text-gray-800 font-medium">
               <Link to="/Discover" className="hover:bg-slate-400 rounded transition-colors duration-200" >Discover</Link>

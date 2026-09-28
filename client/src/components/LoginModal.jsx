@@ -3,10 +3,24 @@ import { Link } from "react-router-dom";
 function LoginModal({isOpen,onClose}){
    const[email,setEmail]=useState("");
    const[password,setPassword]=useState("");
-  function handleSubmit(e){
+  const handleSubmit=async (e)=>{
    e.preventDefault();
-   console.log("hello");
-   
+   const email=document.getElementById("email").value;
+   const password=document.getElementById("password").value;
+   try{
+     const responce=await fetch("http://localhost:4000/api/login",{
+       method:"POST",
+       headers:{"Content-Type":"application/json"},
+       body:JSON.stringify({
+         email:email,
+         password:password
+       })
+     })
+     const data=await responce.json();
+     console.log(data);
+   }catch(error){
+      console.log("Error",error)
+   }
   }
  if(!isOpen) return null;
     return(
@@ -26,16 +40,16 @@ function LoginModal({isOpen,onClose}){
              <div className=" flex flex-col gap-1">
                 <label htmlFor="email" className="text-sm  ">Email</label>
                 <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)} 
-                placeholder="email" required className=" border rounded px-3 py-2 outline-none focus:ring"/>
+                placeholder="email" required id="email" className=" border rounded px-3 py-2 outline-none focus:ring"/>
              </div>
-
+ 
              <div className="flex flex-col gap-1">
                <label htmlFor="password" >password</label>
                <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)}
-                placeholder="password" required className=" border rounded px-3 py-2 outline-none focus:ring"/>
+                placeholder="password" required id="password" className=" border rounded px-3 py-2 outline-none focus:ring"/>
              </div>
 
-             <button onSubmit={handleSubmit} className="mt-2 bg-white/40 hover:bg-white active:scale-[0.98]
+             <button type="Submit" className="mt-2 bg-white/40 hover:bg-white active:scale-[0.98]
              text-gray-800 font-semibold rounded-lg py-2 transition-colors duration-300 hover:scale-[1.02]">Login</button>
             </form>
 

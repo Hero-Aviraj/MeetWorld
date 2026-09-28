@@ -9,7 +9,7 @@ export default function Home(){
         <>
         <Navbar/>
         <main className="pt-10">
-        <section className="flex  flex-col md:flex-row min-h-screen justify-around r bg-indigo-200/40 md:px-40 py-20 ">
+        <section className="flex  flex-col md:flex-row min-h-screen justify-around  bg-indigo-200/40 md:px-20 py-20 ">
            
             <div className="mt-8">
              <div>
