@@ -2,7 +2,7 @@ import profileIcon from "../assets/nav_pngs/profile_icon.png";
 import logo from "../assets/nav_pngs/logo.png"
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import LoginModal from "./LoginModal";
+import Login from "../features/auth/Login";
 export function Navbar(){
 const[showfeature,setShowfeature]=useState(false)
 const[showmore,setShowmore]=useState(false)
@@ -72,7 +72,7 @@ const[showlogin,setShowlogin]=useState(false);
             <button onClick={()=>setShowlogin(true)}> <img src={profileIcon} alt="Profile" className="pt-2 h-8 rounded-lg hover:scale-105 
             transition-transform duration-200" /></button>
            </div>
-           <LoginModal isOpen={showlogin} onClose={()=>setShowlogin(false)}/>
+           <Login isOpen={showlogin} onClose={()=>setShowlogin(false)}/>
 {/*hambarger*/}
 
            { <button

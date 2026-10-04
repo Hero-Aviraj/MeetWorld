@@ -1,8 +1,7 @@
-function Voiceroom(){
+function VoiceRoom(){
   return(
     <>
-    
-    
     </>
   )
 }
+export default VoiceRoom

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Navbar } from "../components/Navbar";
-function Login(){
+
+function Login({isOpen,onClose}){
    const[email,setEmail]=useState("");
    const[password,setPassword]=useState("");
   function handleSubmit(e){
@@ -9,15 +9,17 @@ function Login(){
    console.log("hello");
    
   }
-  
+  if(!isOpen) return null;
     return(
         <>
         
-        <div className=" flex min-h-screen bg-indigo-900 items-center justify-center">
-         <div>  
-         </div>
+        <div className="fixed inset-0 z-50 flex backdrop-blur-md flex items-center justify-center">
+         <div className="absolute inset-0"onClick={onClose}/>  
+         
            <div  className="backdrop-blur-md bg-white/70 border border-white/30 shadow-xl rounded-xl
            px-8 py-10 w-full max-w-sm flex flex-col items-center">
+            <button onClick={onClose} className="absolute top-4 right-4 text-gray-500 
+            hover:text-gray-900 text-xl leading-none ">✕</button>
           <h1 className="text-3xl font-bold mb-6" drop-shadow>Login</h1>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">

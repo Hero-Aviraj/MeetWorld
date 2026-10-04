@@ -1,7 +1,7 @@
 import { Navbar } from "../components/Navbar";
 import { Link } from "react-router-dom";
 import heroicon from "../assets/page_png/hero.png"
-import Login from "./Login";
+
 
 export default function Home(){
 
@@ -24,7 +24,7 @@ export default function Home(){
                <Link to="/chat" className="mt-2 font-semibold  px-5 py-3.5 rounded-[10px] 
                bg-indigo-400 hover:bg-white hover:-translate-y-0.5 transition-transform">Start a conversation</Link> 
                
-                <Link to="/voiceroom"className="mt-2 font-semibold  px-5 py-3.5 rounded-[10px] 
+                <Link to="/RoomList"className="mt-2 font-semibold  px-5 py-3.5 rounded-[10px] 
                bg-indigo-400 hover:bg-white hover:-translate-y-0.5 transition-transform">Browse voice rooms</Link>
               </div>
             </div>
@@ -36,10 +36,11 @@ export default function Home(){
            </section>
            <section className="py-20 px-6">
              <div>
-                <h1>How Meetworld work</h1>
+                <h1>How MeetWorld work </h1>
              </div>
            </section>
            </main>
         </>
     )
 }
+ 
