@@ -17,7 +17,8 @@ export default function Home(){
                     <span className="text-purple-600">World.</span>
                 <br/>
                 One conversation away.</h1> 
-              <p className="text-[1.05rem] leading-relaxed text-gray-700 max-w-[42ch] mb-6 lg:text-left">Video call, voice room, or text — matched instantly with someone
+              <p className="text-[1.05rem] leading-relaxed text-gray-700 max-w-[42ch] mb-6 lg:text-left">
+                Video call, voice room, or text — matched instantly with someone
                 from another part of the world with different culture and background.</p>
                 </div>
               <div className="flex flex-wrap gap-4 ">
