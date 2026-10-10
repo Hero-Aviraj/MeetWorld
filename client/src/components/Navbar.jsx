@@ -1,13 +1,17 @@
 import profileIcon from "../assets/nav_pngs/profile_icon.png";
+import { useAuth } from "../features/auth/AuthContext";
 import logo from "../assets/nav_pngs/logo.png"
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import Login from "../features/auth/Login";
+
 export function Navbar(){
+  const {isLogedin} =useAuth();
 const[showfeature,setShowfeature]=useState(false)
 const[showmore,setShowmore]=useState(false)
 const[mobileOpen,setMobileOpen]=useState(false)
 const[showlogin,setShowlogin]=useState(false);
+
   return(
     <>
     
@@ -19,7 +23,7 @@ const[showlogin,setShowlogin]=useState(false);
            <div className="hidden md:flex items-center gap-12 text-gray-800 font-medium">
               <Link to="/Discover" className="hover:bg-slate-400 rounded transition-colors duration-200" >Discover</Link>
         <div> 
-          <div className="relative ">
+          <div className="relative">
           <button onClick={()=>{setShowfeature(!showfeature);
             setShowmore(false);
           }}
@@ -64,13 +68,22 @@ const[showlogin,setShowlogin]=useState(false);
           </div>
            <div className="hidden md:flex items-center gap-6">
            <div> 
+            {!isLogedin ?(
             <button onClick={()=>setShowlogin(true)}>Login</button>
+              ):(
+                  <button>Logout</button>
+                )
+              }
            </div>
+           {isLogedin && (
             <Link to="Notification"
             className="hover:bg-slate-400 font-medium px-2 py-1 rounded transition-colors"
             >Notification</Link>
-            <button onClick={()=>setShowlogin(true)}> <img src={profileIcon} alt="Profile" className="pt-2 h-8 rounded-lg hover:scale-105 
-            transition-transform duration-200" /></button>
+            )}
+            {isLogedin &&(  
+              <button> <img src={profileIcon} alt="Profile" className="pt-2 h-8 rounded-lg hover:scale-105 
+              transition-transform duration-200" /></button>
+              )}
            </div>
            <Login isOpen={showlogin} onClose={()=>setShowlogin(false)}/>
 {/*hambarger*/}

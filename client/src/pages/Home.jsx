@@ -7,7 +7,7 @@ export default function Home(){
 
     return(
         <>
-        <Navbar/>
+        
         <main className="pt-10">
         <section className="flex  flex-col md:flex-row min-h-screen justify-around  bg-indigo-200/40 md:px-20 py-20 ">
            
