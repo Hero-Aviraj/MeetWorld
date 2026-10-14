@@ -1,21 +1,30 @@
+import { RoomCard } from "./RoomCard";
 
 function RoomList(){
+  
+
   const rooms=[
     {id:1, name:"singing room", user:5},
     {id:2, name:"singing room", user:9},
-    {id:3, name:"gaming room", user:6},
+    {id:3, name:"gaming room", user:6}
+  
   ];
+  // if(!rooms.length){
+  //   return(
+  //     <p>
+  //       No rooms available right now
+  //     </p>
+  //   )
+  //}
   return(
    <>
-     <div className="grid grid-cols-1 gap-5 ">
+     <div className="min-h-screen bg-slate-900 px-4 pt-20 sm:px-6 lg:px-10">
+     <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3 ">
        {rooms.map((room)=>(
-      <div>
-        <h1>{room.name}</h1>
-        <p>{room.user}people</p>
-        <button>Join Room</button>
-      </div>
+      <RoomCard key={room.id} room={room}/>
        ))}
      </div>
+    </div>
    </>
   )
   
