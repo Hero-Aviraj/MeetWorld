@@ -1,5 +1,5 @@
 import {children, createContext,useContext, useState, } from "react";
- 
+import { loginRequest } from "./authApi"; 
 
 const AuthContext=createContext();
 
@@ -8,9 +8,11 @@ export function AuthProvider({children}){
     const [user, setUser] = useState(null);
     
 
-    const login=(userData)=>{
+    const login=async(credentials)=>{
+        const data=await loginRequest(credentials);
         setUser(userData);
         setIsLogedin(true);
+        localStorage.setItem("token",data.token)
     }
     const logout=()=>{
         setUser(null);

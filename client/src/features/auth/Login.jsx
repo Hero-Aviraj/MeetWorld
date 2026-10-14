@@ -1,13 +1,34 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
+import { loginRequest } from "./authApi";
 function Login({isOpen,onClose}){
    const[email,setEmail]=useState("");
    const[password,setPassword]=useState("");
-  function handleSubmit(e){
-   e.preventDefault();
-   console.log("hello");
+   const[loading,setLoading]=useState(false);
+   const[error,setError]=useState("");
    
+    
+  const handleSubmit=async(e)=>{
+   e.preventDefault();
+   setLoading(true);
+   setError("")
+   try{
+   const data=await loginRequest({
+          email,
+          password
+      
+   });
+
+    if (data.success){
+      onClose();
+    }else{setError(data.message|| "invalid email or password")}
+  }catch(error){
+  console.log("error:",error);
+  setError(error.response?.data?.message||"somthing went wrong please try again later");
+  }finally{
+    setLoading(false)
+  }
+  
   }
   if(!isOpen) return null;
     return(
@@ -18,9 +39,10 @@ function Login({isOpen,onClose}){
          
            <div  className="backdrop-blur-md bg-white/70 border border-white/30 shadow-xl rounded-xl
            px-8 py-10 w-full max-w-sm flex flex-col items-center">
+
             <button onClick={onClose} className="absolute top-4 right-4 text-gray-500 
             hover:text-gray-900 text-xl leading-none ">✕</button>
-          <h1 className="text-3xl font-bold mb-6" drop-shadow>Login</h1>
+          <h1 className="text-3xl font-bold mb-6 drop-shadow ">Login</h1>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
 
@@ -40,7 +62,7 @@ function Login({isOpen,onClose}){
              text-gray-800 font-semibold rounded-lg py-2 transition-colors duration-300 hover:scale-[1.02]">Login</button>
             </form>
 
-              <div className="mt-4 text-sm"><p>Don't have an account?{" "}<Link to="/Signup" className="font-semibold underline hover:text-white/100">Signup</Link></p></div>
+              <div className="mt-4 text-sm " onClick={onClose}><p>Don't have an account?{" "}<Link to="/Signup" className="font-semibold underline hover:text-white/100">Signup</Link></p></div>
            </div>
 
         </div>
